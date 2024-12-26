@@ -3,7 +3,7 @@ import logo from "../../assets/ss-logo-transparent.png";
 
 function Footer({ isDarkMode, toggleDarkMode }) {
   return (
-    <footer className="dark:bg-gray-900 bg-gray-300">
+    <footer className="dark:bg-gray-900 bg-gray-300 border-t border-gray-800 dark:border-white">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 lg:px-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">

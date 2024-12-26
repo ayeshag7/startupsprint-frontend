@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        zinc: {
+          950: '#09090b',
+          800: '#27272a',
+          500: '#71717a',
+          400: '#a1a1aa',
+          50: '#fafafa',
+        },
+      },
+    },
   },
   plugins: [],
   darkMode: 'class',
