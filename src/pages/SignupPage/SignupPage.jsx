@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // Import useDispatch
 import { signup } from '../../redux/actions/userAction'; // Import signup action
-import logo from '../../assets/MainLogo.svg';
+import logo from '../../assets/ss-logo-transparent.png';
 import PasswordInput from '../../elements/passwordInput/PasswordInput';
 
 const SignUp = ({ isDarkMode }) => {
@@ -54,19 +54,17 @@ const SignUp = ({ isDarkMode }) => {
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
       }`}
     >
-      <img
-        src={logo}
-        alt="Main Logo"
-        className={`h-24 w-24 ${isDarkMode ? 'invert' : ''}`}
-      />
-
-      <h1 className="text-xl font-bold text-gray-800 mb-2 drop-shadow-lg">
-        Patient Communication PLatform
-      </h1>
-
-      <p className="text-md drop-shadow-md tracking-wide mb-2">
-        Your Voice, Amplified
-      </p>
+      
+      <div className='flex justify-start gap-x-4 items-center'>
+              <img
+                src={logo}
+                alt="Main Logo"
+                className={`h-20 w-20 mb-6 ${isDarkMode ? 'filter invert' : ''}`}
+              />
+              <h1 className="text-2xl font-bold text-gray-800 mb-2 drop-shadow-lg">
+                Startup Sprint
+              </h1>
+      </div>
 
       {/* Sign-Up Form */}
       <div
@@ -182,7 +180,7 @@ const SignUp = ({ isDarkMode }) => {
           <button
             type="submit"
             className={`py-2 rounded-md font-semibold hover:shadow-lg transition-all ${
-              isDarkMode ? 'text-black bg-white' : 'bg-gray-800 text-white'
+              isDarkMode ? 'text-black bg-white' : 'bg-[#1836b2] text-white'
             }`}
           >
             Sign Up

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/userAction';
-import logo from '../../assets/MainLogo.svg';
+import logo from '../../assets/ss-logo-transparent.png';
 import PasswordInput from '../../elements/passwordInput/PasswordInput';
 
 function LoginPage({ isDarkMode }) {
@@ -61,21 +61,17 @@ function LoginPage({ isDarkMode }) {
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
       }`}
     >
-      <img
-        src={logo}
-        alt="Main Logo"
-        className={`h-32 w-32 mb-6 ${isDarkMode ? 'filter invert' : ''}`}
-      />
-      <h1 className="text-2xl font-bold text-gray-800 mb-2 drop-shadow-lg">
-        Patient Communication PLatform
-      </h1>
-      <p
-        className={`text-lg drop-shadow-md tracking-wide mb-6 ${
-          isDarkMode ? 'text-white' : 'text-black'
-        }`}
-      >
-        Your Voice, Amplified
-      </p>
+      <div className='flex justify-start gap-x-4 items-center'>
+        <img
+          src={logo}
+          alt="Main Logo"
+          className={`h-24 w-24 mb-6 ${isDarkMode ? 'filter invert' : ''}`}
+        />
+        <h1 className="text-2xl font-bold text-gray-800 mb-2 drop-shadow-lg">
+          Startup Sprint
+        </h1>
+      </div>
+
       {/* Login Form */}
       <div
         className={`p-8 rounded-lg shadow-lg w-96 ${
@@ -129,7 +125,7 @@ function LoginPage({ isDarkMode }) {
             type="submit"
             disabled={loading}  // Disable button when loading
             className={`py-2 rounded-md font-semibold hover:shadow-lg transition-all ${
-              isDarkMode ? 'text-black bg-white' : 'bg-gray-800 text-white'
+              isDarkMode ? 'text-black bg-white' : 'bg-[#1836b2] text-white'
             }`}
           >
             {loading ? 'Logging in...' : 'Login'}
