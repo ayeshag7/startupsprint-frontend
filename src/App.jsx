@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import SplashScreen from "./components/splashScreen/SplashScreen";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import Home from "./pages/Home/Home";
 import MyErrorBoundary, { NotFoundPage } from "./components/errorPage/ErrorBoundary"; 
 
 
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<SplashScreen />} />
+        <Route path="/home" element={<Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>}/>
         <Route path="/login"
           element={
             isAuthenticated ? (
