@@ -61,7 +61,7 @@ const SignUp = ({ isDarkMode }) => {
                 alt="Main Logo"
                 className={`h-20 w-20 mb-6 ${isDarkMode ? 'filter invert' : ''}`}
               />
-              <h1 className="text-2xl font-bold text-gray-800 mb-2 drop-shadow-lg">
+              <h1 className="text-2xl font-bold dark:text-white text-gray-800 mb-2 drop-shadow-lg">
                 Startup Sprint
               </h1>
       </div>
@@ -196,7 +196,7 @@ const SignUp = ({ isDarkMode }) => {
           Already have an account?{' '}
           <button
             onClick={() => navigate('/login')}
-            className="text-gray-800 hover:underline border-none bg-transparent focus:outline-none"
+            className="dark:text-[#e7c94d] text-gray-800 hover:underline border-none bg-transparent focus:outline-none"
           >
             Log in
           </button>

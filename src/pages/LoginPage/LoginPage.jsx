@@ -67,7 +67,7 @@ function LoginPage({ isDarkMode }) {
           alt="Main Logo"
           className={`h-24 w-24 mb-6 ${isDarkMode ? 'filter invert' : ''}`}
         />
-        <h1 className="text-2xl font-bold text-gray-800 mb-2 drop-shadow-lg">
+        <h1 className="text-2xl font-bold dark:text-white text-gray-800 mb-2 drop-shadow-lg">
           Startup Sprint
         </h1>
       </div>
@@ -140,7 +140,7 @@ function LoginPage({ isDarkMode }) {
           Don't have an account?{' '}
           <button
             onClick={() => navigate('/signup')}
-            className="text-gray-800 hover:underline border-none bg-transparent focus:outline-none"
+            className="dark:text-[#e7c94d] text-gray-800 hover:underline border-none bg-transparent focus:outline-none"
           >
             Signup
           </button>
