@@ -3,7 +3,7 @@ import { FaUsers, FaDollarSign, FaPiggyBank } from 'react-icons/fa';
 
 function StartupCard({ image, name, description, members, valuation, investments }) {
   return (
-    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow max-w-lg mx-4">
+    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4">
       {/* Image Container */}
       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
         <img

@@ -2,8 +2,8 @@ import React from 'react';
 import { DashBoardIcon,  MealsIcon, MenusIcon, ParticipantsIcon, OrdersIcon, PersIcon, ReviewsIcon, UmsIcon, VendorsIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
 
 const allSidebarItems = [
-  { to: "/dashboard", icon: <DashBoardIcon/>, label: "Dashboard", permission: "Dashboard" },
-  { to: "/orders", icon: <OrdersIcon/>, label: "Orders", permission: "Orders" },
+  { to: "/dashboard", icon: <DashBoardIcon/>, label: "Home", permission: "Home" },
+  { to: "/startups", icon: <OrdersIcon/>, label: "Startups", permission: "Startups" },
   {
     to: "/participants",
     icon: <ParticipantsIcon />,

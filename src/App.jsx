@@ -8,7 +8,7 @@ import Home from "./pages/Home/Home";
 import MyErrorBoundary, { NotFoundPage } from "./components/errorPage/ErrorBoundary"; 
 import Layout from "./components/navigation/layout/Layout"
 import Dashboard from "./pages/Dashboard/Dashoard";
-import Startups from "./pages/Dashboard/Startups";
+import Startups from "./pages/Startups/Startups";
 import { useDarkMode } from './context/DarkModeContext';
 
 function App() {
