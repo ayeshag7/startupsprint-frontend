@@ -9,7 +9,7 @@ function Hero() {
     <>
 
       <div className="mt-36 mb-14 flex justify-center items-center px-4">
-        <div className="text-6xl mx-auto font text-black dark:text-white text-center">
+        <div className="max-sm:text-4xl text-6xl mx-auto font text-black dark:text-white text-center">
           Build
           <FlipWords words={words} /> <br />
           startups with <span className='font-semibold'>Startup Sprint</span>
