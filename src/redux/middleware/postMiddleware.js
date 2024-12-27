@@ -19,6 +19,24 @@ const postMiddleware = {
             });
         };
     },
+
+    GetPostsByUserID: (UserID) => {
+        return async (dispatch, getState) => {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const response = await apiGet(`/protected/posts/user/${UserID}`);
+                    if (response.success) {
+                        resolve(response);
+                    } else {
+                        reject(response);
+                    }
+                } catch (e) {
+                    console.log('Error', e);
+                    reject(e);
+                }
+            });
+        };
+    },
 };
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaHeart, FaRegHeart, FaComment, FaShare, FaExpand } from 'react-icons/fa';
 
-function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, liked, postId }) {
+function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, liked, postId, postdt }) {
   const [isLiked, setIsLiked] = useState(liked);
   const [likeCount, setLikeCount] = useState(initialLikeCount);
   const [showMore, setShowMore] = useState(false);
@@ -28,16 +28,28 @@ function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, 
     }
   };
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    return formattedDate.replace(',', '');
+  }
+
+  const postdate = formatDate(postdt)
+
   return (
     <div className="border rounded-lg p-4 bg-white shadow-md max-w-full max-h-[500px] overflow-hidden">
       <div className="flex flex-col h-full gap-4">        
-        <div className="flex items-center gap-3">
-          <img
-            src={userPhoto}
-            alt={userName}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <span className="font-semibold text-gray-800">{userName}</span>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <img
+              src={userPhoto}
+              alt={userName}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <span className="font-semibold text-gray-800">{userName}</span>
+          </div>
+          <span className="text-sm text-gray-500">{postdate}</span>
         </div>
 
         <div className="flex-grow mt-4 relative">

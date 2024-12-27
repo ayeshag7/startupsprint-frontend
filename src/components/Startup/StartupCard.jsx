@@ -1,9 +1,17 @@
 import React from 'react';
 import { FaUsers, FaDollarSign, FaPiggyBank } from 'react-icons/fa';
 
-function StartupCard({ image, name, description, members, valuation, investments }) {
+function StartupCard({ image, name, description, members, valuation, investments, location, startdt }) {
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    return formattedDate.replace(',', '');
+  }
+  const startdate = formatDate(startdt)
   return (
-    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4">
+    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4 relative">
       {/* Image Container */}
       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
         <img
@@ -12,6 +20,7 @@ function StartupCard({ image, name, description, members, valuation, investments
           className="w-full h-full object-cover"
         />
       </div>
+
       {/* Text Content */}
       <div className="mt-4 sm:mt-0 sm:ml-4 flex-1">
         <h2 className="text-lg font-bold text-gray-800 dark:text-white">
@@ -20,6 +29,15 @@ function StartupCard({ image, name, description, members, valuation, investments
         <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
           {description}
         </p>
+
+        {/* Location and Start Date (positioned on the top-right corner) */}
+        <div className="absolute top-4 right-4 text-sm text-gray-600 dark:text-gray-300">
+          <div className="font-bold">Based in</div>
+          <div>{location}</div>
+          <div className="mt-2 font-bold">Founded</div>
+          <div>{startdate}</div>
+        </div>
+
         {/* Additional Information */}
         <div className="mt-4">
           {/* Members */}
