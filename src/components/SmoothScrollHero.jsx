@@ -13,18 +13,20 @@ import pimg2 from "../assets/p-img-2.jpg";
 import pimg3 from "../assets/p-img-3.jpg";
 import pimg4 from "../assets/p-img-4.jpg";
 
-export const SmoothScrollHero = () => {
+export const SmoothScrollHero = ({isDarkMode}) => {
   return (
     <div className="bg-white dark:bg-gray-900">
       <ReactLenis
         root
         options={{
-          // Learn more -> https://github.com/darkroomengineering/lenis?tab=readme-ov-file#instance-settings
-          lerp: 0.05,
-          //   infinite: true,
-          //   syncTouch: true,
+          lerp: 0.07, // Slightly higher for better performance
+          syncTouch: true,
+          smoothWheel: true,
+          smoothTouch: true,
+          duration: 1.2, // Adjust duration for smoother easing
         }}
       >
+
         <Nav />
         <Hero />
         <Text />
@@ -83,42 +85,46 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        backgroundImage: `
+          linear-gradient(to bottom, transparent, #1f2937), 
+          url(https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+        `,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
+        backgroundBlendMode: "overlay", // Ensures smooth blending
       }}
     />
   );
 };
 
+
 const ParallaxImages = () => {
   return (
     <div className="mx-auto max-w-5xl px-4 pt-[200px]">
       <ParallaxImg
-        src={pimg1}
-        alt="And example of a space launch"
+        src="https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="An example of a startup ecosystem"
         start={-200}
         end={200}
         className="w-1/3"
       />
       <ParallaxImg
-        src={pimg2}
-        alt="An example of a space launch"
+        src="https://images.unsplash.com/photo-1520110120835-c96534a4c984?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="An example of a startup ecosystem"
         start={200}
         end={-250}
         className="mx-auto w-2/3"
       />
       <ParallaxImg
-        src={pimg3}
-        alt="Orbiting satellite"
+        src="https://images.unsplash.com/photo-1523908511403-7fc7b25592f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="An example of a startup ecosystem"
         start={-200}
         end={200}
         className="ml-auto w-1/3"
       />
       <ParallaxImg
-        src={pimg4}
-        alt="Orbiting satellite"
+        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="An example of a startup ecosystem"
         start={0}
         end={-500}
         className="ml-24 w-5/12"
@@ -147,12 +153,14 @@ const ParallaxImg = ({ className, alt, src, start, end }) => {
       alt={alt}
       className={className}
       ref={ref}
-      style={{ transform, opacity }}
+      style={{ transform, opacity, willChange: "transform, opacity" }}
+      loading="lazy" // Lazy load images
     />
   );
 };
 
-const Text = () => {
+
+const Text = ({isDarkMode}) => {
   return (
     <section
       id="launch-schedule"
@@ -162,30 +170,32 @@ const Text = () => {
         initial={{ y: 48, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeInOut", duration: 0.75 }}
-        className="mb-20 text-4xl font-black uppercase text-black dark:text-white"
+        className="mb-6 text-4xl font-black uppercase text-black dark:text-white"
       >
         Sprint Ahead of the Pack
       </motion.h1>
+      <motion.p
+        initial={{ y: 48, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.75, delay: 0.25 }}
+        className="text-lg text-gray-700 dark:text-gray-300 mb-10"
+      >
+        Lead the way in innovation and set new standards for success. Showcase
+        your startup's journey, connect with industry leaders and visionaries,
+        and build meaningful relationships that fuel growth and transformation.
+        Sprint ahead and shape the future, one milestone at a time.
+      </motion.p>
+      <motion.div
+        initial={{ y: 48, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.75, delay: 0.5 }}
+      >
+        <button
+          className="text-white dark:text-black dark:bg-[#e7c94d] dark:hover:bg-white dark:hover:text-black bg-[#1836b2] hover:bg-white hover:text-[#1836b2] hover:border-[#1836b2] dark:hover:border-[#e7c94d] px-4 py-2 rounded-md border-2 border-transparent"
+        >
+          Join Us
+        </button>
+      </motion.div>
     </section>
-  );
-};
-
-const ScheduleItem = ({ title, date, location }) => {
-  return (
-    <motion.div
-      initial={{ y: 48, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
-      className="mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9"
-    >
-      <div>
-        <p className="mb-1.5 text-xl text-zinc-50">{title}</p>
-        <p className="text-sm uppercase text-zinc-500">{date}</p>
-      </div>
-      <div className="flex items-center gap-1.5 text-end text-sm uppercase text-zinc-500">
-        <p>{location}</p>
-        <FiMapPin />
-      </div>
-    </motion.div>
   );
 };

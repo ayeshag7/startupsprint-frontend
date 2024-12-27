@@ -1,19 +1,19 @@
 import React from 'react'
 import Header from '../../components/Layout/Header';
 import Footer from '../../components/Layout/Footer';
-import { SmoothScrollHero } from '../../components/SmoothScrollHero';
+import Hero from "../../components/Hero";
 
 function Home({ isDarkMode, toggleDarkMode }) {
   return (
-    <>
+    <main className='bg-white dark:bg-gray-900'>
         <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
         <main className='min-h-screen'>
 
-          <SmoothScrollHero/>
+          <Hero isDarkMode={isDarkMode}/>
 
         </main>
         <Footer isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
-    </>
+    </main>
   )
 }
 

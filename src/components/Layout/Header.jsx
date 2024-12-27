@@ -33,7 +33,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
             height={64}
             className={isDarkMode ? 'filter invert' : ''}
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap">
+          <span className="self-center text-2xl font-bold whitespace-nowrap">
             Startup Sprint
           </span>
         </Link>
