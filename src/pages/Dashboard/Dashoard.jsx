@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PostCard from '../../elements/postCard/PostCard'
 
 function Dashboard() {
   const [posts, setPosts] = useState([]);
@@ -38,10 +39,7 @@ function Dashboard() {
             <p className="text-gray-500">No posts available.</p>
           ) : (
             posts.map((post) => (
-              <div key={post.id} className="p-4 border rounded-lg shadow-sm">
-                <h2 className="font-medium text-lg">{post.user}</h2>
-                <p className="text-gray-700">{post.content}</p>
-              </div>
+              <PostCard key={post.id} user={post.user} content={post.content} />
             ))
           )}
         </div>
