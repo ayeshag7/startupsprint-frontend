@@ -5,40 +5,35 @@ import SplashScreen from "./components/splashScreen/SplashScreen";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import Home from "./pages/Home/Home";
-import MyErrorBoundary, { NotFoundPage } from "./components/errorPage/ErrorBoundary";
-import { DarkModeProvider, useDarkMode } from './context/DarkModeContext';
+import MyErrorBoundary, { NotFoundPage } from "./components/errorPage/ErrorBoundary"; 
+import Layout from "./components/navigation/layout/Layout"
+import Dashboard from "./pages/Dashboard/Dashoard";
+
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.user);
 
   return (
     <MyErrorBoundary>
-      <DarkModeProvider> {/* Wrap the app with DarkModeProvider */}
-        <Router>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<SplashScreen />} />
-            <Route 
-              path="/home" 
-              element={<Home />} 
-            />
-            <Route 
-              path="/login"
-              element={
-                isAuthenticated ? (
-                  <Navigate to="/dashboard" />
-                ) : (
-                  <LoginPage />
-                )
-              }
-            />
-            <Route 
-              path="/signup" 
-              element={<SignupPage />} 
-            />
-          </Routes>
-        </Router>
-      </DarkModeProvider>
+    <Router>
+      {/* <Toast /> */}
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/home" element={<Home isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>}/>
+        <Route path="/login"
+          element={
+            isAuthenticated ? (
+              <Navigate to="/dashboard" />
+            ) : (
+              <LoginPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
+            )
+          }
+        />
+        <Route path="/signup" element={<SignupPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>}/>
+        <Route path="/dashboard" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Dashboard isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+      </Routes>
+    </Router>
     </MyErrorBoundary>
   );
 }

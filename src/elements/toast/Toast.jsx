@@ -4,11 +4,13 @@ import { hideAlert } from '../../redux/actions/alertActions';
 import SuccessIcon from '../../assets/customIcons/toastIcons/SuccessIcon.svg?react';
 import WarningIcon from '../../assets/customIcons/toastIcons/WarningIcon.svg?react';
 import ErrorIcon from '../../assets/customIcons/toastIcons/ErrorIcon.svg?react';
-import CancelIcon from '../../assets/customIcons/genearlIcons/CancelIcon.svg?react';
+import CancelIcon from '../../assets/customIcons/generalIcons/CancelIcon.svg?react';
 
 const Toast = () => {
     const dispatch = useDispatch();
     const { visible, type, message } = useSelector((state) => state.alert);
+
+    
 
     useEffect(() => {
         if (visible) {
