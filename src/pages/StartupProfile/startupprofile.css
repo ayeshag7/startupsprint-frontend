@@ -39,17 +39,3 @@ body {
   font-size: 14px;
   color: #555;
 }
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #1836b2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #e7c94d;
-}
