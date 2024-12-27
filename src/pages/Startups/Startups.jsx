@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import StartupCard from '../../components/Startup/StartupCard';
 import startupMiddleware from '../../redux/middleware/startupMiddleware';
-import { useDispatch } from 'react-redux';
 
 function Startups() {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Added navigate
   const [startups, setStartups] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -26,6 +28,11 @@ function Startups() {
 
     fetchStartups();
   }, [dispatch]);
+
+  const handleCardClick = (startup) => {    
+    navigate(`/startups/startupprofile/${startup._id}`, { state: { startup } });
+  };
+  
   
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50">
@@ -45,8 +52,9 @@ function Startups() {
                 members={12}
                 valuation={startup.evaluation}
                 investments={startup.funds}
-                location={startup.address.country}
+                location={startup.address?.country || 'Unknown'}
                 startdt={String(startup.createdAt)}
+                onClick={() => handleCardClick(startup)}
               />
             ))
           )}

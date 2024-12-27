@@ -2,7 +2,7 @@ import React from 'react';
 import { FaUsers, FaDollarSign, FaPiggyBank } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link
 
-function StartupCard({ image, name, description, members, valuation, investments, location, startdt }) {
+function StartupCard({ image, name, description, members, valuation, investments, location, startdt, onClick }) {
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -12,7 +12,7 @@ function StartupCard({ image, name, description, members, valuation, investments
   }
   const startdate = formatDate(startdt)
   return (
-    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4 relative">
+    <div onClick={onClick} className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4 relative">
       {/* Image Container */}
       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
         <img
