@@ -1,59 +1,119 @@
 import React, { useState } from 'react';
-import { FaHeart, FaComment, FaShare } from 'react-icons/fa';  // Import icons for like, comment, and share
+import { FaHeart, FaRegHeart, FaComment, FaShare, FaExpand } from 'react-icons/fa';
 
-function Post({ user, userImage, postImage, content }) {
-  const [isLiked, setIsLiked] = useState(false);  // Track like state
-  const [showFullText, setShowFullText] = useState(false);  // Toggle caption text
+function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, liked, postId }) {
+  const [isLiked, setIsLiked] = useState(liked);
+  const [likeCount, setLikeCount] = useState(initialLikeCount);
+  const [showMore, setShowMore] = useState(false);
+  const [showFullPhoto, setShowFullPhoto] = useState(false);
 
-  const toggleLike = () => {
-    setIsLiked(!isLiked);  // Toggle like state
-  };
+  const toggleLike = async () => {
+    setIsLiked(!isLiked);
+    if (isLiked) {
+      setLikeCount(likeCount - 1);
+    } else {
+      setLikeCount(likeCount + 1);
+    }
 
-  const toggleText = () => {
-    setShowFullText(!showFullText);  // Toggle between full text and truncated text
+    try {
+      await fetch(`/api/posts/${postId}/like`, {
+        method: 'POST',
+        body: JSON.stringify({ liked: !isLiked }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      console.error('Error updating like count:', error);
+    }
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-sm max-w-xl mx-auto bg-white">
-      {/* User Info */}
-      <div className="flex items-center space-x-4 mb-4">
-        <img src={userImage} alt={user} className="w-10 h-10 rounded-full" />
-        <span className="font-semibold text-lg">{user}</span>
+    <div className="border rounded-lg p-4 bg-white shadow-md max-w-full max-h-[500px] overflow-hidden">
+      <div className="flex flex-col h-full gap-4">        
+        <div className="flex items-center gap-3">
+          <img
+            src={userPhoto}
+            alt={userName}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <span className="font-semibold text-gray-800">{userName}</span>
+        </div>
+
+        <div className="flex-grow mt-4 relative">
+          <div className="relative w-full h-[300px] overflow-hidden rounded-md group">
+            <img
+              src={postPhoto}
+              alt="Post"
+              className="absolute top-0 left-0 w-full h-full object-cover"
+            />
+            <div
+              className="absolute top-2 right-2 p-2 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer z-10"
+              onClick={() => setShowFullPhoto(true)}
+            >
+              <FaExpand className="text-white text-lg" />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3 mt-4">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={toggleLike}
+              className="flex items-center gap-2"
+            >
+              {isLiked ? (
+                <FaHeart className="text-red-500" />
+              ) : (
+                <FaRegHeart className="text-gray-500" />
+              )}
+              <span className="text-gray-700">{likeCount}</span>
+            </button>
+
+            <button className="flex items-center gap-2 text-gray-500">
+              <FaComment />
+              <span className="text-gray-700">Comment</span>
+            </button>
+
+            <button className="flex items-center gap-2 text-gray-500">
+              <FaShare />
+              <span className="text-gray-700">Share</span>
+            </button>
+          </div>
+
+          <div className="text-gray-700">
+            {showMore ? postText : postText.slice(0, 100) + (postText.length > 100 ? '...' : '')}
+            {postText.length > 100 && (
+              <button
+                onClick={() => setShowMore(!showMore)}
+                className="ml-2 text-blue-500"
+              >
+                {showMore ? 'Show Less' : 'Show More'}
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Post Image */}
-      <img src={postImage} alt="Post" className="w-full h-auto mb-4 rounded-lg" />
-
-      {/* Like, Comment, Share Options */}
-      <div className="flex items-center space-x-6 mb-4">
-        <div className="flex items-center cursor-pointer" onClick={toggleLike}>
-          <FaHeart className={`text-2xl ${isLiked ? 'text-red-500' : 'text-gray-500'}`} />
-          <span className="ml-2 text-sm">{isLiked ? 'Liked' : 'Like'}</span>
+      {showFullPhoto && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="relative max-w-full max-h-full">
+            <img
+              src={postPhoto}
+              alt="Full Post"
+              className="max-w-full max-h-screen object-contain rounded-md"
+            />
+            <button
+              className="absolute top-4 right-4 text-white bg-black/60 rounded-full p-2"
+              onClick={() => setShowFullPhoto(false)}
+            >
+              &times;
+            </button>
+          </div>
         </div>
-        <div className="flex items-center cursor-pointer">
-          <FaComment className="text-2xl text-gray-500" />
-          <span className="ml-2 text-sm">Comment</span>
-        </div>
-        <div className="flex items-center cursor-pointer">
-          <FaShare className="text-2xl text-gray-500" />
-          <span className="ml-2 text-sm">Share</span>
-        </div>
-      </div>
-
-      {/* Caption */}
-      <div className="text-gray-700">
-        <p className={`text-sm ${showFullText ? '' : 'line-clamp-1'}`}>
-          {content}
-        </p>
-        <button 
-          className="text-blue-500 text-sm mt-2"
-          onClick={toggleText}
-        >
-          {showFullText ? 'Show less' : 'Show more'}
-        </button>
-      </div>
+      )}
     </div>
   );
 }
 
-export default Post;
+export default PostCard;
