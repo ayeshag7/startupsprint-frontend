@@ -75,7 +75,7 @@ export default function SideBars() {
             </div>
 
             {/* Below menu */}
-            <nav className={`px-5 flex-grow overflow-y-auto ${!isCollapsed && 'overflow-x-hidden'}`}>
+            <nav className={`px-5 flex-grow ${!isCollapsed && 'overflow-x-hidden'}`}>
                 <ul className="flex flex-col gap-1.5 justify-center">
                     {sidebarItems().map(({ to, icon, label, hasSubmenu, subItems }) => (
                         <li key={to} className="flex flex-col gap-1.5">
