@@ -53,6 +53,8 @@ function MyProfile() {
                 initialLikeCount={post.likecount}
                 liked={post.liked}
                 postdt={String(post.updatedAt)}
+                startupName={post.startupName}
+                startupID={post.startupID}
               />
             ))
           )}

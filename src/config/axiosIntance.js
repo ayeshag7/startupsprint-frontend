@@ -4,7 +4,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 
 const axiosInstance = Axios.create({
   baseURL,
-  timeout: 10000,  
+  timeout: 1000000000,  
 });
 
 // Request interceptor to include tokens in each request

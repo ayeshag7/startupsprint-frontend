@@ -27,7 +27,7 @@ function Dashboard() {
 
     fetchPosts();
   }, [dispatch]);
-
+  
   return (
     <div className='rounded-lg border bg-blue-50 dark:bg-yellow-100'>
     <div className="flex m-1 mb-3">
@@ -51,6 +51,8 @@ function Dashboard() {
                 initialLikeCount={post.likecount}
                 liked={post.liked}
                 postdt={String(post.updatedAt)}
+                startupName={post.startupName}
+                startupID={post.startupID}
               />
             ))
           )}

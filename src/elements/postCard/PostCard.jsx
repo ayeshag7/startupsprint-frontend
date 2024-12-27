@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaHeart, FaRegHeart, FaComment, FaShare, FaExpand } from 'react-icons/fa';
 
-function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, liked, postId, postdt }) {
+function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, liked, postId, postdt, startupName, startupID }) {
   const [isLiked, setIsLiked] = useState(liked);
   const [likeCount, setLikeCount] = useState(initialLikeCount);
   const [showMore, setShowMore] = useState(false);
@@ -47,7 +47,17 @@ function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, 
               alt={userName}
               className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-semibold text-gray-800">{userName}</span>
+            <div className='flex flex-col'>
+              {startupName ? (
+                <>
+                  <span className="font-semibold text-gray-800">{startupName}</span>
+                  <span className="font-semibold text-gray-400 text-xs">{userName}</span>
+                </>
+              ) : (
+                <span className="font-semibold text-gray-800">{userName}</span>
+              )}
+            </div>
+
           </div>
           <span className="text-sm text-gray-500">{postdate}</span>
         </div>

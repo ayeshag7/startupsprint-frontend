@@ -7,10 +7,6 @@ function PostInput() {
   const [inputValue, setInputValue] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const userPhoto = user.profilephoto;
-  
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
 
   const handlePhotoClick = () => {
     console.log('Photo icon clicked!');
@@ -28,7 +24,7 @@ function PostInput() {
         <input
           type="text"
           value={inputValue}
-          onChange={handleInputChange}
+          onClick={() => navigate('/addpost')}
           placeholder="What's on your mind?"
           className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
         />        
