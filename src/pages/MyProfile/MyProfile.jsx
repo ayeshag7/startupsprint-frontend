@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PostCard from '../../elements/postCard/PostCard';
 import postMiddleware from '../../redux/middleware/postMiddleware';
 import { useDispatch } from 'react-redux';
+import PostInput from '../../components/dashboard/PostInput';
 
 function MyProfile() {
   const dispatch = useDispatch();
@@ -30,11 +31,15 @@ function MyProfile() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50 dark:bg-yellow-100">
+    <div className='rounded-lg border bg-blue-50 dark:bg-yellow-100'>
+    <div className="flex m-1 mb-3">
+      <PostInput/>
+      </div>
+    <div className="flex flex-col gap-6 h-[calc(100vh-180px)] overflow-auto">
       {loading ? (
         <p className="text-gray-500">Loading posts...</p>
       ) : (
-        <div className="space-y-4 mx-4 my-8">
+        <div className="space-y-4 mx-4">
           {posts.length === 0 ? (
             <p className="text-gray-500">No posts available.</p>
           ) : (
@@ -53,6 +58,7 @@ function MyProfile() {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 }
