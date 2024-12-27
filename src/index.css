@@ -25,3 +25,37 @@ body {
 .animate-scroll {
   animation: scroll 30s linear infinite;
 }
+
+/* Custom Styles for Startup Timeline */
+.timeline-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem; /* rounded-lg equivalent */
+}
+
+.timeline-container h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.timeline-container p {
+  font-size: 14px;
+  color: #555;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1836b2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e7c94d;
+}
+
+

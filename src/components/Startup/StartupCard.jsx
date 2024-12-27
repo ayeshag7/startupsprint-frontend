@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaUsers, FaDollarSign, FaPiggyBank } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link
 
-function StartupCard({ image, name, description, members, valuation, investments }) {
+function StartupCard({ id, image, name, description, members, valuation, investments }) {
   return (
-    <div className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4">
+    <Link to={`/startupprofile`} className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4">
       {/* Image Container */}
       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
         <img
@@ -46,7 +47,7 @@ function StartupCard({ image, name, description, members, valuation, investments
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
