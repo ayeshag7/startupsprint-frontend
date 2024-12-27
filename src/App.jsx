@@ -12,7 +12,7 @@ import Startups from "./pages/Startups/Startups";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import MyStartups from "./pages/MyProfile/Startups";
 import MyInvestments from "./pages/MyProfile/MyInvestments";
-import StartupProfile from "./pages/StartupProfile";
+import StartupProfile from "./pages/StartupProfile/StartupProfile";
 import { useDarkMode } from './context/DarkModeContext';
 
 function App() {

@@ -30,9 +30,9 @@ function Dashboard() {
 
   return (
     <div className='rounded-lg border bg-blue-50 dark:bg-yellow-100'>
-    {/* <div className="flex m-1 mb-3">
+    <div className="flex m-1 mb-3">
       <PostInput/>
-      </div> */}
+      </div>
     <div className="flex flex-col gap-6 h-[calc(100vh-180px)] overflow-auto">
       {loading ? (
         <p className="text-gray-500">Loading posts...</p>

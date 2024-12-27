@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import startupMiddleware from '../redux/middleware/startupMiddleware';
+import startupMiddleware from '../../redux/middleware/startupMiddleware';
 import { useDispatch } from 'react-redux';
 import { FaUsers, FaDollarSign, FaPiggyBank } from 'react-icons/fa';
-import placeholderimg from "../assets/placeholder-startup.jpg";
-import { useDarkMode } from '../context/DarkModeContext';
-import StartupTimeline from '../components/Startup/StartupTimeline';
-import FundingTrendChart from '../components/chart/FundingTrendChart';
+import placeholderimg from "../../assets/placeholder-startup.jpg";
+import { useDarkMode } from '../../context/DarkModeContext';
+import StartupTimeline from '../../components/Startup/StartupTimeline';
+import FundingTrendChart from '../../components/chart/FundingTrendChart';
+import "./startupprofile.css"
 
 function StartupProfile() {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function StartupProfile() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50">
+    <div className="flex flex-col gap-6 h-[calc(100vh-140px)] overflow-auto rounded-lg border bg-blue-50">
       {loading ? (
         <p className="text-gray-500">Loading startup profile...</p>
       ) : (
