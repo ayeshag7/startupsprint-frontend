@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../assets/ss-logo-transparent.png";
+import logo from "../../assets/mainLogo.png";
 
 function Footer({ isDarkMode, toggleDarkMode }) {
   return (

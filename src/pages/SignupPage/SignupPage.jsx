@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // Import useDispatch
 import { signup } from '../../redux/actions/userAction'; // Import signup action
-import logo from '../../assets/ss-logo-transparent.png';
+import logo from '../../assets/mainLogo.png';
 import PasswordInput from '../../elements/passwordInput/PasswordInput';
 
 const SignUp = ({ isDarkMode }) => {
