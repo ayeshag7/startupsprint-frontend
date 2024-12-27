@@ -7,6 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        main: {
+          blue: '#1836b2',
+          yellow: '#e7c94d',
+        },
         zinc: {
           950: '#09090b',
           800: '#27272a',
