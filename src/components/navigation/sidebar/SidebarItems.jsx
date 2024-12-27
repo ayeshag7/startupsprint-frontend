@@ -16,13 +16,13 @@ const allSidebarItems = [
       { to: "/participantsrequests", label: "Participants Requests" },
     ],
   },
-  { to: "/meals", icon: <MealsIcon/>, label: "Meals", permission: "Meals" },
-  { to: "/menus", icon: <MenusIcon/>, label: "Menus", permission: "Menus" },
-  { to: "/vendors", icon: <VendorsIcon/>, label: "Vendors", permission: "Vendors" },
+  // { to: "/meals", icon: <MealsIcon/>, label: "Meals", permission: "Meals" },
+  // { to: "/menus", icon: <MenusIcon/>, label: "Menus", permission: "Menus" },
+  // { to: "/vendors", icon: <VendorsIcon/>, label: "Vendors", permission: "Vendors" },
   // { to: "/analytics", icon: <AnalyticsIcon />, label: "Analytics", permission: "Analytics" },
-  { to: "/reviews", icon: <ReviewsIcon/>, label: "Reviews", permission: "Reviews" },
-  { to: "/ums", icon: <UmsIcon/>, label: "UMS", permission: "UMS" },
-  { to: "/pers", icon: <PersIcon/>, label: "PERS", permission: "PERS" },
+  // { to: "/reviews", icon: <ReviewsIcon/>, label: "Reviews", permission: "Reviews" },
+  // { to: "/ums", icon: <UmsIcon/>, label: "UMS", permission: "UMS" },
+  // { to: "/pers", icon: <PersIcon/>, label: "PERS", permission: "PERS" },
 ];
 
 

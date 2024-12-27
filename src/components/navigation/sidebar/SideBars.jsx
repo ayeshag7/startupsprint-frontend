@@ -6,6 +6,7 @@ import leftarrow from "../../../assets/sidebar collapse button.svg";
 import mainLogo from '../../../assets/mainLogo.png';
 import sidebarItems from './SidebarItems';
 import { ExpandableIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
+import { useDarkMode } from '../../../context/DarkModeContext';
 
 export default function SideBars() {
 
@@ -13,6 +14,9 @@ export default function SideBars() {
     const dispatch = useDispatch();
     const [isSubMenuExpanded, setisSubMenuExpanded] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    // Access dark mode state and toggle function from context
+      const { isDarkMode, toggleDarkMode } = useDarkMode();
 
     const toggleSidebarState = () => {
         dispatch(toggleSidebar());
@@ -41,12 +45,12 @@ export default function SideBars() {
 
     return (
         <div
-            className={`flex flex-col justify-between bg-white gap-2 h-screen transition-all duration-500 ease-in-out ${isCollapsed ? 'w-24' : 'w-64'} flex-shrink-0 overflow-x-hidden`}
+            className={`flex flex-col justify-between bg-white dark:bg-gray-800 gap-2 h-screen transition-all duration-500 ease-in-out ${isCollapsed ? 'w-24' : 'w-64'} flex-shrink-0 overflow-x-hidden`}
         >
 
             {/* Logo and Collapse Button */}
             <div className="flex items-center justify-between p-5">
-                <img src={mainLogo} alt="YANA Logo" height={62} width={96} className={`${isCollapsed ? 'w-0 h-0 opacity-0' : 'overflow-hidden'}`} />
+                <img src={mainLogo} alt="YANA Logo" height={62} width={96} className={`${isCollapsed ? 'w-0 h-0 opacity-0' : 'overflow-hidden'} ${isDarkMode ? 'filter invert' : ''}`} />
                 {isCollapsed ? (
                     <img src={mainLogo} alt="Collapsed Logo" className="h-10 hover:scale-110 cursor-pointer" onClick={toggleSidebarState} />
                 ) : (
@@ -62,9 +66,9 @@ export default function SideBars() {
                         <path
                             d="M9.625 29.2916L3.5 18.4999L9.625 7.70825M16.625 29.2916L10.5 18.4999L16.625 7.70825"
                             stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                         />
                     </svg>
                 )}
@@ -83,7 +87,7 @@ export default function SideBars() {
                                         ? "before:content-[''] before:absolute before:left-1/2 before:top-1/2 before:w-9 before:h-9 before:rounded-md before:transform before:-translate-x-1/2 before:-translate-y-1/2"
                                         : "before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[3px] before:bg-[#1836b2] before:rounded-l-md"
                                         }`
-                                    : `text-gray-800`
+                                    : `text-gray-800 dark:text-white`
                                     } ${isCollapsed ? 'justify-center rounded-full' : ''}`
                                 }
                                 onClick={hasSubmenu ? toggleCustomersSection : undefined}
@@ -119,7 +123,7 @@ export default function SideBars() {
                                             <NavLink
                                                 to={subTo}
                                                 className={({ isActive }) =>
-                                                    `hover:bg-[#ffe6e9] flex items-center font-medium p-1.5 text-sm transition-colors rounded ${isActive ? 'text-[#1836b2] bg-[#ffe6e9]' : 'text-gray-800 hover:text-[#1836b2]'
+                                                    `hover:bg-[#ffe6e9] flex items-center font-medium p-1.5 text-sm transition-colors rounded ${isActive ? 'text-[#1836b2] bg-[#ffe6e9]' : 'text-gray-800 dark:text-white hover:text-[#1836b2]'
                                                     }`
                                                 }
                                             >

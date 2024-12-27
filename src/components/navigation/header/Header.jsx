@@ -23,10 +23,10 @@ function Header() {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center gap-2">
+    <div className="flex flex-col justify-between items-center gap-2 bg-white dark:bg-gray-900">
       <div className="flex w-full justify-between items-center">
         <div className="flex-grow transition-all duration-300 ease-in-out ">
-          <h2 className="text-xl font-semibold text-[#464255]">
+          <h2 className="text-xl font-semibold text-black dark:text-white">
             Hello, {user?.name || "Admin"}{" "}
           </h2>
         </div>
