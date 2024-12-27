@@ -14,6 +14,7 @@ import MyStartups from "./pages/MyProfile/Startups";
 import MyInvestments from "./pages/MyProfile/MyInvestments";
 import StartupProfile from "./components/Startup/StartupProfile/StartupProfile";
 import AddPost from "./components/posts/AddPost";
+import AddStartup from "./components/Startup/AddStartup";
 import { useDarkMode } from './context/DarkModeContext';
 
 function App() {
@@ -44,7 +45,10 @@ function App() {
 
         <Route path="/myposts" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/addpost" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddPost isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+
         <Route path="/mystartups" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyStartups isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+        <Route path="/addstartup" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddStartup isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+
         <Route path="/myinvestments" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyInvestments isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
       </Routes>
     </Router>
