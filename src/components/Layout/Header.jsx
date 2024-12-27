@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from "../../assets/mainLogo.png";
+import { useDarkMode } from '../../context/DarkModeContext';
 
 function Header() {
   const [hidden, setHidden] = useState(true);

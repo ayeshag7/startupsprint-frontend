@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // Import useDispatch
 import { signup } from '../../redux/actions/userAction'; // Import signup action
+import { FaArrowLeft } from 'react-icons/fa'; 
 import logo from '../../assets/mainLogo.png';
 import PasswordInput from '../../elements/passwordInput/PasswordInput';
+import { useDarkMode } from '../../context/DarkModeContext';
 
-const SignUp = ({ isDarkMode }) => {
+const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   // State for form inputs
   const [formData, setFormData] = useState({
@@ -53,7 +57,18 @@ const SignUp = ({ isDarkMode }) => {
       className={`flex flex-col justify-center items-center h-screen w-screen ${
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
       }`}
-    >
+    > 
+      {/* Back Arrow Button */}
+            <button
+              onClick={() => navigate('/home')}
+              className="absolute top-8 left-8 text-lg focus:outline-none"
+            >
+              <FaArrowLeft
+                className={`text-2xl ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                } hover:opacity-80 transition-opacity`}
+              />
+            </button>
       
       <div className='flex justify-start gap-x-4 items-center'>
               <img

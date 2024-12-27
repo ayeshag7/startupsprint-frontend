@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/userAction';
+import { FaArrowLeft } from 'react-icons/fa'; 
 import logo from '../../assets/mainLogo.png';
 import PasswordInput from '../../elements/passwordInput/PasswordInput';
+import { useDarkMode } from '../../context/DarkModeContext';
 
-function LoginPage({ isDarkMode }) {
+function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -17,7 +21,6 @@ function LoginPage({ isDarkMode }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -25,16 +28,14 @@ function LoginPage({ isDarkMode }) {
       [name]: value,
     }));
     if (error) {
-      setError(null); // Clear the error when the user starts typing again
+      setError(null);
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
 
-    // Basic email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailPattern.test(email)) {
       setError('Please enter a valid email address.');
@@ -43,10 +44,10 @@ function LoginPage({ isDarkMode }) {
 
     const data = { email, password };
 
-    setLoading(true);  // Start loading
+    setLoading(true);
     setError(null);
     try {
-      await dispatch(login(data));      
+      await dispatch(login(data));
       navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Invalid credentials, please try again.');
@@ -61,7 +62,19 @@ function LoginPage({ isDarkMode }) {
         isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
       }`}
     >
-      <div className='flex justify-start gap-x-4 items-center'>
+      {/* Back Arrow Button */}
+      <button
+        onClick={() => navigate('/home')}
+        className="absolute top-8 left-8 text-lg focus:outline-none"
+      >
+        <FaArrowLeft
+          className={`text-2xl ${
+            isDarkMode ? 'text-white' : 'text-black'
+          } hover:opacity-80 transition-opacity`}
+        />
+      </button>
+
+      <div className="flex justify-start gap-x-4 items-center">
         <img
           src={logo}
           alt="Main Logo"
@@ -86,7 +99,6 @@ function LoginPage({ isDarkMode }) {
           Log In
         </h2>
         <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-          {/* Email Field */}
           <input
             type="email"
             name="email"
@@ -100,7 +112,6 @@ function LoginPage({ isDarkMode }) {
             }`}
             required
           />
-          {/* Password Field */}
           <div className="relative w-full mb-4">
             <PasswordInput
               id="password"
@@ -116,14 +127,10 @@ function LoginPage({ isDarkMode }) {
               required
             />
           </div>
-          {/* Error Message */}
-          {error && (
-            <p className="text-red-500 text-center mb-4">{error}</p>
-          )}
-          {/* Submit Button */}
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <button
             type="submit"
-            disabled={loading}  // Disable button when loading
+            disabled={loading}
             className={`py-2 rounded-md font-semibold hover:shadow-lg transition-all ${
               isDarkMode ? 'text-black bg-white' : 'bg-[#1836b2] text-white'
             }`}
@@ -131,7 +138,6 @@ function LoginPage({ isDarkMode }) {
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-        {/* Additional Options */}
         <p
           className={`text-gray-600 mt-4 text-center ${
             isDarkMode ? 'text-white' : 'text-black'

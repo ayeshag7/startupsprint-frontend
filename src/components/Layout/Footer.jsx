@@ -1,7 +1,11 @@
 import React from 'react';
 import logo from "../../assets/mainLogo.png";
+import { useDarkMode } from '../../context/DarkModeContext';
 
-function Footer({ isDarkMode, toggleDarkMode }) {
+function Footer() {
+
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
   return (
     <footer className="dark:bg-gray-900 bg-gray-300 border-t border-gray-800 dark:border-white">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 lg:px-8">
