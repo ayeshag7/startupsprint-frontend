@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { toggleSidebar } from '../../../redux/reducers/sidebarReducer';
@@ -12,6 +12,8 @@ export default function SideBars() {
     const isCollapsed = useSelector((state) => state.sidebar.isCollapsed);
     const dispatch = useDispatch();
     const [isSubMenuExpanded, setisSubMenuExpanded] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
     const toggleSidebarState = () => {
         dispatch(toggleSidebar());
     };
@@ -19,6 +21,22 @@ export default function SideBars() {
     const toggleCustomersSection = () => {
         setisSubMenuExpanded((prev) => !prev);
     };
+
+     useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (screenWidth <= 700 && !isCollapsed) {
+            dispatch(toggleSidebar());
+        }
+    }, [screenWidth, dispatch, isCollapsed]);
 
 
     return (

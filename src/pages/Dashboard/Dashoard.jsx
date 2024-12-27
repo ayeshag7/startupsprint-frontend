@@ -13,14 +13,14 @@ function Dashboard() {
       try {
         const response = await dispatch(postMiddleware.GetAllPosts());
         if (response.success) {
-          setPosts(response.data); // Assign the data array from response
+          setPosts(response.data);
         } else {
           console.error("Error fetching posts:", response.message);
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
-        setLoading(false); // Ensure loading is false after the attempt
+        setLoading(false);
       }
     };
 
@@ -28,7 +28,7 @@ function Dashboard() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col gap-6 h-[calc(100vh-200px)]">
+    <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border">
       {loading ? (
         <p className="text-gray-500">Loading posts...</p>
       ) : (
