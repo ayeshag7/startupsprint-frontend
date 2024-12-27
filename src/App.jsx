@@ -9,13 +9,10 @@ import MyErrorBoundary, { NotFoundPage } from "./components/errorPage/ErrorBound
 import Layout from "./components/navigation/layout/Layout"
 import Dashboard from "./pages/Dashboard/Dashoard";
 import Startups from "./pages/Startups/Startups";
-<<<<<<< HEAD
-import StartupProfile from "./pages/StartupProfile";
-=======
 import MyProfile from "./pages/MyProfile/MyProfile";
 import MyStartups from "./pages/MyProfile/Startups";
 import MyInvestments from "./pages/MyProfile/MyInvestments";
->>>>>>> a2c3b45bae6e6fcdacf7eb236b932196ae1d6b9f
+import StartupProfile from "./pages/StartupProfile";
 import { useDarkMode } from './context/DarkModeContext';
 
 function App() {
@@ -41,15 +38,10 @@ function App() {
         <Route path="/signup" element={<SignupPage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>}/>
         <Route path="/dashboard" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Dashboard isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/startups" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Startups isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
-<<<<<<< HEAD
-
         <Route path="/startupprofile" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><StartupProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
-
-=======
         <Route path="/myposts" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/mystartups" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyStartups isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/myinvestments" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyInvestments isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
->>>>>>> a2c3b45bae6e6fcdacf7eb236b932196ae1d6b9f
       </Routes>
     </Router>
     </MyErrorBoundary>
