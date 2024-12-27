@@ -65,7 +65,7 @@ function StartupCard({ image, name, description, members, valuation, investments
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
