@@ -3,7 +3,7 @@ import StartupCard from '../../components/Startup/StartupCard';
 import startupMiddleware from '../../redux/middleware/startupMiddleware';
 import { useDispatch } from 'react-redux';
 
-function Startups() {
+function MyStartups() {
   const dispatch = useDispatch();
   const [startups, setStartups] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,9 @@ function Startups() {
   useEffect(() => {
     const fetchStartups = async () => {
       try {
-        const response = await dispatch(startupMiddleware.GetAllStartups());
+        const user = JSON.parse(localStorage.getItem('user'));
+        const UserID = user._id;        
+        const response = await dispatch(startupMiddleware.GetStartupsByUserID(UserID));        
         if (response.success) {
           setStartups(response.data);
         } else {
@@ -56,4 +58,4 @@ function Startups() {
   );
 }
 
-export default Startups;
+export default MyStartups;

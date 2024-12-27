@@ -3,7 +3,7 @@ import PostCard from '../../elements/postCard/PostCard';
 import postMiddleware from '../../redux/middleware/postMiddleware';
 import { useDispatch } from 'react-redux';
 
-function Dashboard() {
+function MyProfile() {
   const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,9 @@ function Dashboard() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await dispatch(postMiddleware.GetAllPosts());
+        const user = JSON.parse(localStorage.getItem('user'));
+        const UserID = user._id;        
+        const response = await dispatch(postMiddleware.GetPostsByUserID(UserID));        
         if (response.success) {
           setPosts(response.data);
         } else {
@@ -55,4 +57,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default MyProfile;

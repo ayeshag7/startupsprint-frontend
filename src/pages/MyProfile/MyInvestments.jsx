@@ -3,7 +3,7 @@ import StartupCard from '../../components/Startup/StartupCard';
 import startupMiddleware from '../../redux/middleware/startupMiddleware';
 import { useDispatch } from 'react-redux';
 
-function Startups() {
+function MyInvestments() {
   const dispatch = useDispatch();
   const [startups, setStartups] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +26,13 @@ function Startups() {
 
     fetchStartups();
   }, [dispatch]);
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    return formattedDate.replace(',', '');
+  }
   
   return (
     <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50">
@@ -46,7 +53,7 @@ function Startups() {
                 valuation={startup.evaluation}
                 investments={startup.funds}
                 location={startup.address.country}
-                startdt={String(startup.createdAt)}
+                startdt={formatDate(String(startup.createdAt))}
               />
             ))
           )}
@@ -56,4 +63,4 @@ function Startups() {
   );
 }
 
-export default Startups;
+export default MyInvestments;
