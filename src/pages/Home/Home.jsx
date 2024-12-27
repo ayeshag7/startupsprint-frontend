@@ -4,18 +4,18 @@ import Footer from '../../components/Layout/Footer';
 import Hero from "../../components/Hero";
 import Partners from '../../components/Partners';
 
-function Home({ isDarkMode, toggleDarkMode }) {
+function Home() {
   return (
     <main className='bg-white dark:bg-gray-900'>
-        <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
+        <Header />
         <main className='min-h-screen'>
 
-          <Hero isDarkMode={isDarkMode}/>
+          <Hero />
 
-          <Partners isDarkMode={isDarkMode}/>
+          <Partners />
 
         </main>
-        <Footer isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
+        <Footer />
     </main>
   )
 }

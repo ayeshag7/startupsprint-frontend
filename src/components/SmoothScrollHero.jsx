@@ -5,13 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { SiSpacex } from "react-icons/si";
-import { FiArrowRight, FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
-import pimg1 from "../assets/p-img-1.jpg";
-import pimg2 from "../assets/p-img-2.jpg";
-import pimg3 from "../assets/p-img-3.jpg";
-import pimg4 from "../assets/p-img-4.jpg";
 
 export const SmoothScrollHero = ({isDarkMode}) => {
   return (
@@ -19,11 +13,11 @@ export const SmoothScrollHero = ({isDarkMode}) => {
       <ReactLenis
         root
         options={{
-          lerp: 0.07, // Slightly higher for better performance
+          lerp: 0.07, 
           syncTouch: true,
           smoothWheel: true,
           smoothTouch: true,
-          duration: 1.2, // Adjust duration for smoother easing
+          duration: 1.2, 
         }}
       >
 
@@ -91,7 +85,7 @@ const CenterImage = () => {
         `,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundBlendMode: "overlay", // Ensures smooth blending
+        backgroundBlendMode: "overlay", 
       }}
     />
   );

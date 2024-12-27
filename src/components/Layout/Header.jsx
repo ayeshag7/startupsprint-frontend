@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from "../../assets/ss-logo-transparent.png";
+import { useDarkMode } from '../../context/DarkModeContext'; 
 
-function Header({ isDarkMode, toggleDarkMode }) {
+function Header() {
   const [hidden, setHidden] = useState(true);
   const location = useLocation();
+  
+  // Access dark mode state and toggle function from context
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   // Function to check if the link is active
   const isActive = (path) => location.pathname === path;
@@ -16,13 +20,10 @@ function Header({ isDarkMode, toggleDarkMode }) {
       document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
-  
 
   return (
     <nav
-      className={`w-full min-h-20 border-b border-gray-200 ${
-        isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
-      }`}
+      className={`w-full min-h-20 border-b border-gray-200 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}
     >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse max-md:mt-2 max-md:mb-6">
@@ -82,7 +83,7 @@ function Header({ isDarkMode, toggleDarkMode }) {
         </div>
         {/* Dark Mode Toggle Button */}
         <button
-          onClick={toggleDarkMode}
+          onClick={toggleDarkMode} // Use the toggle function from context
           className="ml-4 p-2 max-sm:px-0 max-sm:py-8 rounded-lg focus:outline-none"
         >
           {isDarkMode ? (
