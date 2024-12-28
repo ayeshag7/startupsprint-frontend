@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashBoardIcon,  MealsIcon, MenusIcon, ParticipantsIcon, OrdersIcon, PersIcon, ReviewsIcon, UmsIcon, VendorsIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
+import { DashBoardIcon,  MealsIcon, MenusIcon, ParticipantsIcon, OrdersIcon, PersIcon, ReviewsIcon, UmsIcon, VendorsIcon, ChatIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
 
 const allSidebarItems = [
   { to: "/dashboard", icon: <DashBoardIcon/>, label: "Home", permission: "Home" },
@@ -16,6 +16,7 @@ const allSidebarItems = [
       { to: "/myinvestments", label: "Investments" },
     ],
   },
+  { to: "/chat", icon: <ChatIcon/>, label: "Chat", permission: "Chat" },
   // { to: "/meals", icon: <MealsIcon/>, label: "Meals", permission: "Meals" },
   // { to: "/menus", icon: <MenusIcon/>, label: "Menus", permission: "Menus" },
   // { to: "/vendors", icon: <VendorsIcon/>, label: "Vendors", permission: "Vendors" },

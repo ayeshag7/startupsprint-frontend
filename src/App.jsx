@@ -14,6 +14,7 @@ import MyInvestments from "./pages/MyProfile/MyInvestments";
 import StartupProfile from "./components/Startup/StartupProfile/StartupProfile";
 import AddPost from "./components/myProfile/posts/AddPost";
 import AddStartup from "./components/Startup/AddStartup";
+import Chat from "./pages/Chat/Chat";
 import Requests from "./pages/Requests/Requests";
 import { useDarkMode } from './context/DarkModeContext';
 
@@ -50,6 +51,11 @@ function App() {
         <Route path="/addpost" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddPost isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
 
         <Route path="/myinvestments" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyInvestments isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+
+        <Route path="/chat" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Chat isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+
+        <Route path="/requests" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Requests isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+        
       </Routes>
     </Router>
     </MyErrorBoundary>
