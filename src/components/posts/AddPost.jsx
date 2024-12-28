@@ -101,7 +101,7 @@ const AddPost = () => {
   return (
     <div className={`rounded-lg p-6 shadow-md max-w-full h-[calc(100vh-100px)] border ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <h1 className={`mb-[15px] font-bold text-2xl ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>Add Post</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 h-[calc(100vh-240px)] overflow-auto">
         <div className="flex flex-col gap-4">
           <div>
             <label htmlFor="posttext" className="block font-bold mb-[5px]">Post Text</label>
@@ -172,8 +172,7 @@ const AddPost = () => {
             </div>
           </div>
         </div>
-  
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           <ButtonWithIcon
             type="button"
             onClick={handleCancel}

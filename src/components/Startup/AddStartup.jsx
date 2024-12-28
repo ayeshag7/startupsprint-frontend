@@ -55,13 +55,14 @@ const AddStartup = () => {
 
   const handleAddressChange = (e) => {
     const { name, value } = e.target;
-    setStartupData((prevData) => ({
-      ...prevData,
-      address: {
-        ...prevData.address,
-        [name]: value,
-      },
-    }));
+    const addressField = name.split(".")[1]; 
+      setStartupData((prevData) => ({
+        ...prevData,
+        address: {
+          ...prevData.address,
+          [addressField]: value,
+        },
+      }));
   };
 
   const handleLinksChange = (e) => {
@@ -73,45 +74,7 @@ const AddStartup = () => {
         [name]: value,
       },
     }));
-  };
-
-  const handleChangeMoreLinks = (e) => {
-    const { name, value } = e.target;
-    setNewLink((prevLink) => ({
-      ...prevLink,
-      [name]: value,
-    }));
-  };
-
-  const handleAddMoreLink = () => {
-    if (newLink.label && newLink.url) {
-      setStartupData((prevData) => ({
-        ...prevData,
-        links: {
-          ...prevData.links,
-          morelinks: [
-            ...prevData.links.morelinks,
-            { label: newLink.label, url: newLink.url },
-          ],
-        },
-      }));
-
-      // Clear the newLink fields after adding
-      setNewLink({ label: '', url: '' });
-    }
-  };
-
-  const removeMoreLink = (index) => {
-    const updatedMoreLinks = [...startupData.links.morelinks];
-    updatedMoreLinks.splice(index, 1);
-    setStartupData((prevData) => ({
-      ...prevData,
-      links: {
-        ...prevData.links,
-        morelinks: updatedMoreLinks,
-      },
-    }));
-  };
+  };  
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -134,7 +97,7 @@ const AddStartup = () => {
     formData.append('status', startupData.status);
 
     if (attachedFile) {
-      formData.append('profilephoto', attachedFile);
+      formData.append('imagefile', attachedFile);
     }
 
     Object.entries(startupData.address).forEach(([key, value]) => {
@@ -144,6 +107,7 @@ const AddStartup = () => {
     Object.entries(startupData.links).forEach(([key, value]) => {
       formData.append(`links.${key}`, value);
     });
+
 
     try {
       const response = await dispatch(startupMiddleware.AddStartup(formData));
@@ -171,7 +135,7 @@ const AddStartup = () => {
       <h1 className={`mb-[15px] font-bold text-2xl ${isDarkMode ? 'text-white' : 'text-gray-600'}`}>
         Add Startup
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-6 h-[calc(100vh-240px)] overflow-auto">
+      <form className="space-y-6 h-[calc(100vh-240px)] overflow-auto">
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap gap-[10px] mb-[15px] w-full px-2">
             <div className="flex-1 min-w-[1px]">
@@ -182,27 +146,30 @@ const AddStartup = () => {
                     value={startupData.name}
                     onChange={handleInputChange}
                     className="w-full p-2 border border-gray-300 rounded-md"
+                    required
                 />
             </div>
             <div className="flex-1 min-w-[1px]">
                 <label htmlFor="funds" className="block font-bold mb-[5px]">Initial Investments</label>
                     <input
+                    type='number'
                     id="funds"
                     name="funds"
                     value={startupData.funds}
                     onChange={handleInputChange}
-                    className="w-full p-2 border border-gray-300 rounded-md"
+                    className="w-full p-2 border border-gray-300 rounded-md "
                 />
             </div>
 
             <div className="flex-1 min-w-[1px]">
                 <label htmlFor="evaluation" className="block font-bold mb-[5px]">Valuation</label>
                 <input
-                id="evaluation"
-                name="evaluation"
-                value={startupData.evaluation}
-                onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                  type='number'
+                  id="evaluation"
+                  name="evaluation"
+                  value={startupData.evaluation}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
                 />
             </div>
           </div>
@@ -217,6 +184,7 @@ const AddStartup = () => {
               className={`w-full p-2 border rounded-md ${
                 isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-black border-gray-300'
               }`}
+              required
             />
           </div>
 
@@ -231,6 +199,22 @@ const AddStartup = () => {
                 isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-black border-gray-300'
               }`}
             />
+          </div>
+
+          <div>
+            <label htmlFor="type" className="block font-bold mb-[5px]">Type</label>
+            <select
+              id="type"
+              name="type"
+              value={startupData.type}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-md"
+              required
+            >
+              <option value="Service">Service</option>
+              <option value="Product">Product</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
           </div>
 
         <h1>Address</h1>
@@ -313,6 +297,7 @@ const AddStartup = () => {
                 value={startupData.address.country}
                 onChange={handleAddressChange}
                 className="w-full p-2 border border-gray-300 rounded-md"
+                required
                 />
             </div>
         </div>
@@ -324,11 +309,12 @@ const AddStartup = () => {
                 <FaFacebook className="mr-2" /> Facebook
                 </label>
                 <input
-                id="facebook"
-                name="links.facebook"
-                value={startupData.links.facebook}
-                onChange={handleLinksChange}
-                className="w-full border border-gray-300 rounded-md"
+                  type="url"
+                  id="facebook"
+                  name="facebook"
+                  value={startupData.links.facebook}
+                  onChange={handleLinksChange}
+                  className="w-full border border-gray-300 rounded-md"
                 />
             </div>
 
@@ -337,11 +323,12 @@ const AddStartup = () => {
                 <FaInstagram className="mr-2" /> Instagram
                 </label>
                 <input
-                id="instagram"
-                name="links.instagram"
-                value={startupData.links.instagram}
-                onChange={handleLinksChange}
-                className="w-full border border-gray-300 rounded-md"
+                  type="url"
+                  id="instagram"
+                  name="instagram"
+                  value={startupData.links.instagram}
+                  onChange={handleLinksChange}
+                  className="w-full border border-gray-300 rounded-md"
                 />
             </div>
             </div>
@@ -352,11 +339,12 @@ const AddStartup = () => {
                 <FaLinkedin className="mr-2" /> LinkedIn
                 </label>
                 <input
-                id="linkedin"
-                name="links.linkedin"
-                value={startupData.links.linkedin}
-                onChange={handleLinksChange}
-                className="w-full border border-gray-300 rounded-md"
+                  type="url"
+                  id="linkedin"
+                  name="linkedin"
+                  value={startupData.links.linkedin}
+                  onChange={handleLinksChange}
+                  className="w-full border border-gray-300 rounded-md"
                 />
             </div>
 
@@ -365,11 +353,12 @@ const AddStartup = () => {
                 <FaTwitter className="mr-2" /> Twitter
                 </label>
                 <input
-                id="twitter"
-                name="links.twitter"
-                value={startupData.links.twitter}
-                onChange={handleLinksChange}
-                className="w-full border border-gray-300 rounded-md"
+                  type="url"
+                  id="twitter"
+                  name="twitter"
+                  value={startupData.links.twitter}
+                  onChange={handleLinksChange}
+                  className="w-full border border-gray-300 rounded-md"
                 />
             </div>
 
@@ -378,103 +367,15 @@ const AddStartup = () => {
                 <FaGlobe className="mr-2" /> Website
                 </label>
                 <input
-                id="website"
-                name="links.website"
-                value={startupData.links.website}
-                onChange={handleLinksChange}
-                className="w-full border border-gray-300 rounded-md"
+                  type="url"
+                  id="website"
+                  name="website"
+                  value={startupData.links.website}
+                  onChange={handleLinksChange}
+                  className="w-full border border-gray-300 rounded-md"
                 />
             </div>
         </div>
-
-        <h3>More Links</h3>
-        <div className="flex flex-wrap gap-[10px] mb-[15px] w-full px-2">
-            {startupData.links.morelinks.map((link, index) => (
-            <div key={index} className="flex-1 min-w-[1px]">
-                <label htmlFor={`label-${index}`} className="block font-bold mb-[5px]">
-                More Link {index + 1}
-                </label>
-                <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2">
-                    <span className="font-semibold">{link.label}: </span>
-                    <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600"
-                    >
-                    {link.url}
-                    </a>
-                    <button
-                    type="button"
-                    onClick={() => removeMoreLink(index)}
-                    className="text-red-600"
-                    >
-                    <FaTimes />
-                    </button>
-                </div>
-                </div>
-            </div>
-            ))}
-        </div>
-
-        {/* Add More Link Fields */}
-        <div className="flex flex-wrap gap-[10px] mb-[15px] w-full px-2">
-            <div className="flex-1 min-w-[1px]">
-            <label htmlFor="label" className="block font-bold mb-[5px]">
-                More Link Name
-            </label>
-            <input
-                id="label"
-                name="label"
-                value={newLink.label}
-                onChange={handleChangeMoreLinks}
-                placeholder="Link Name"
-                className="w-full border border-gray-300 rounded-md"
-            />
-            </div>
-
-            <div className="flex-1 min-w-[1px]">
-            <label htmlFor="url" className="block font-bold mb-[5px]">
-                More Link URL
-            </label>
-            <input
-                id="url"
-                name="url"
-                type="url"
-                value={newLink.url}
-                onChange={handleChangeMoreLinks}
-                placeholder="Link URL"
-                className="w-full border border-gray-300 rounded-md"
-            />
-            </div>
-
-            {/* Add Button */}
-            <div className="flex items-center gap-2">
-            <button
-                type="button"
-                onClick={handleAddMoreLink}
-                className="text-blue-600 flex items-center"
-            >
-                <FaPlus className="mr-2" /> 
-            </button>
-            </div>
-        </div>
-
-          <div>
-            <label htmlFor="type" className="block font-bold mb-[5px]">Type</label>
-            <select
-              id="type"
-              name="type"
-              value={startupData.type}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="Service">Service</option>
-              <option value="Product">Product</option>
-              <option value="Hybrid">Hybrid</option>
-            </select>
-          </div>
 
           <div className="w-full py-2">
             <p className={`block font-bold mb-[5px] ${isDarkMode ? 'text-white' : 'text-black'}`}>Attach Post Image</p>
@@ -499,16 +400,16 @@ const AddStartup = () => {
         </div>
       </form>
 
-      <div className="flex justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
           <ButtonWithIcon
             type="button"
             onClick={handleCancel}
-            text="Cancel"
+            text="Discard"
             className="bg-red-600 text-white px-3 py-2 rounded-full"
           />
           <ButtonWithIcon
-            type="submit"
-            text="Save"
+            onClick={handleSubmit}
+            text="Submit"
             className="bg-blue-600 text-white px-3 py-2 rounded-full"
           />
         </div>

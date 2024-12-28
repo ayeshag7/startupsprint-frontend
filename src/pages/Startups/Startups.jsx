@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import StartupCard from '../../components/Startup/StartupCard';
-import startupMiddleware from '../../redux/middleware/startupMiddleware';
+import startupMiddleware from '../../redux/middleware/startupMiddleware'
 
 function Startups() {
   const dispatch = useDispatch();

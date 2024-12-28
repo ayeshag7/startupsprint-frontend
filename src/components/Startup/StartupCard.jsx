@@ -12,7 +12,7 @@ function StartupCard({ image, name, description, members, valuation, investments
   }
   const startdate = formatDate(startdt)
   return (
-    <div onClick={onClick} className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4 relative">
+    <div onClick={onClick} className="flex flex-col sm:flex-row items-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg hover:shadow-xl transition-shadow m-4 relative cursor-pointer">
       {/* Image Container */}
       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
         <img

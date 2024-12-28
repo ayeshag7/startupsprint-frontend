@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StartupCard from '../../components/Startup/StartupCard';
 import startupMiddleware from '../../redux/middleware/startupMiddleware';
 import { useDispatch } from 'react-redux';
+import { FaPlus } from 'react-icons/fa';
+import ButtonWithIcon from '../../elements/buttonWithIcon/ButtonWithIcon';
 
 function MyStartups() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [startups, setStartups] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,8 +32,27 @@ function MyStartups() {
 
     fetchStartups();
   }, [dispatch]);
+
+  const handleAddStartupClick = () => {
+    navigate('/addstartup');
+  };
   
   return (
+    <>
+    <div className="flex justify-end items-center">
+        <div className="flex items-center space-x-4">
+          <ButtonWithIcon
+            onClick={handleAddStartupClick}
+            icon={
+              <div className="flex justify-center items-center w-4 h-4 rounded-full">
+                <FaPlus className="text-white text-xl" />
+              </div>
+            }
+            text="Add Startup"
+            className="bg-custom-blue text-white px-3 py-2 rounded-full"
+          />
+        </div>
+      </div>
     <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50">
       {loading ? (
         <p className="text-gray-500">Loading startups...</p>
@@ -55,6 +78,7 @@ function MyStartups() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

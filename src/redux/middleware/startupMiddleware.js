@@ -37,6 +37,25 @@ const startupMiddleware = {
             });
         };
     },
+
+    AddStartup: (postdata) => {
+        return async (dispatch, getState) => {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const response = await apiPost("/protected/startups/", postdata);
+                    if (response.success) {
+                        // dispatch(showSuccessAlert("Participant Created successfully"));
+                        resolve(response);
+                    } else {
+                        reject(response);
+                    }
+                } catch (e) {
+                    console.log('Error', e);
+                    reject(e);
+                }
+            });
+        };
+    },
 };
 
 
