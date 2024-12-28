@@ -1,22 +1,23 @@
 import React from 'react';
-import { DashBoardIcon,  MealsIcon, MenusIcon, ParticipantsIcon, OrdersIcon, PersIcon, ReviewsIcon, UmsIcon, VendorsIcon, ChatIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
+import { DashBoardIcon,  MealsIcon, MenusIcon, ParticipantsIcon, OrdersIcon, PersIcon, ReviewsIcon, UmsIcon, VendorsIcon, ChatIcon, RequestIcon } from '../../../assets/customIcons/sidebarIcons/SidebarIcons';
 
 const allSidebarItems = [
   { to: "/dashboard", icon: <DashBoardIcon/>, label: "Home", permission: "Home" },
   { to: "/startups", icon: <OrdersIcon/>, label: "Startups", permission: "Startups" },
   {
-    to: "/myposts",
+    to: "/myprofile",
     icon: <ParticipantsIcon />,
     label: "My Profile",
     hasSubmenu: true,
     permission: "MyProfile",
     subItems: [
-      { to: "/myposts", label: "Posts" },
+      { to: "/myprofile", label: "My Profile" },
       { to: "/mystartups", label: "Startups" },
       { to: "/myinvestments", label: "Investments" },
     ],
   },
   { to: "/chat", icon: <ChatIcon/>, label: "Chat", permission: "Chat" },
+  { to: "/requests", icon: <RequestIcon/>, label: "Requets", permission: "Requets" },
   // { to: "/meals", icon: <MealsIcon/>, label: "Meals", permission: "Meals" },
   // { to: "/menus", icon: <MenusIcon/>, label: "Menus", permission: "Menus" },
   // { to: "/vendors", icon: <VendorsIcon/>, label: "Vendors", permission: "Vendors" },
