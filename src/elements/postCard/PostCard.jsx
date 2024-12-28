@@ -38,7 +38,7 @@ function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, 
   const postdate = formatDate(postdt)
 
   return (
-    <div className="border rounded-lg p-4 bg-white shadow-md max-w-full max-h-[500px] overflow-hidden">
+    <div className="border dark:border-gray-600 rounded-lg p-4 bg-white shadow-md max-w-full max-h-[500px] overflow-hidden dark:bg-gray-800">
       <div className="flex flex-col h-full gap-4">        
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
@@ -50,16 +50,16 @@ function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, 
             <div className='flex flex-col'>
               {startupName ? (
                 <>
-                  <span className="font-semibold text-gray-800">{startupName}</span>
-                  <span className="font-semibold text-gray-400 text-xs">{userName}</span>
+                  <span className="font-semibold text-gray-800 dark:text-white">{startupName}</span>
+                  <span className="font-semibold text-gray-400 text-xs dark:text-white">{userName}</span>
                 </>
               ) : (
-                <span className="font-semibold text-gray-800">{userName}</span>
+                <span className="font-semibold text-gray-800 dark:text-white">{userName}</span>
               )}
             </div>
 
           </div>
-          <span className="text-sm text-gray-500">{postdate}</span>
+          <span className="text-sm text-gray-500 dark:text-white">{postdate}</span>
         </div>
 
         <div className="flex-grow mt-4 relative">
@@ -89,21 +89,21 @@ function PostCard({ userName, userPhoto, postPhoto, postText, initialLikeCount, 
               ) : (
                 <FaRegHeart className="text-gray-500" />
               )}
-              <span className="text-gray-700">{likeCount}</span>
+              <span className="text-gray-700 dark:text-white">{likeCount}</span>
             </button>
 
             <button className="flex items-center gap-2 text-gray-500">
               <FaComment />
-              <span className="text-gray-700">Comment</span>
+              <span className="text-gray-700 dark:text-white">Comment</span>
             </button>
 
             <button className="flex items-center gap-2 text-gray-500">
               <FaShare />
-              <span className="text-gray-700">Share</span>
+              <span className="text-gray-700 dark:text-white">Share</span>
             </button>
           </div>
 
-          <div className="text-gray-700">
+          <div className="text-gray-700 dark:text-white">
             {showMore ? postText : postText.slice(0, 100) + (postText.length > 100 ? '...' : '')}
             {postText.length > 100 && (
               <button
