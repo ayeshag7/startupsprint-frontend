@@ -31,10 +31,7 @@ function Conversation({ isDarkMode, conversationToRender, setconversationToRende
     };
 
     const handleProfileClick = (userData) => {
-        if (userData) {
-            setSelectedUser(userData);
-            setShowProfileDetails(true);
-        }
+        
     };
 
     // Scroll to the bottom whenever conversationToRender updates
