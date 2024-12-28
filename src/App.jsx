@@ -10,10 +10,9 @@ import Layout from "./components/navigation/layout/Layout"
 import Dashboard from "./pages/Dashboard/Dashoard";
 import Startups from "./pages/Startups/Startups";
 import MyProfile from "./pages/MyProfile/MyProfile";
-import MyStartups from "./pages/MyProfile/Startups";
 import MyInvestments from "./pages/MyProfile/MyInvestments";
 import StartupProfile from "./components/Startup/StartupProfile/StartupProfile";
-import AddPost from "./components/posts/AddPost";
+import AddPost from "./components/myProfile/posts/AddPost";
 import AddStartup from "./components/Startup/AddStartup";
 import { useDarkMode } from './context/DarkModeContext';
 
@@ -42,12 +41,10 @@ function App() {
 
         <Route path="/startups" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Startups isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/startups/startupprofile/:startupID" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><StartupProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+        <Route path="/addstartup" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddStartup isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
 
         <Route path="/myposts" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/addpost" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddPost isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
-
-        <Route path="/mystartups" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyStartups isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
-        <Route path="/addstartup" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddStartup isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
 
         <Route path="/myinvestments" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyInvestments isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
       </Routes>

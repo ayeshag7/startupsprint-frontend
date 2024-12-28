@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'custom-blue': '#1836b2',
+        'custom-yellow': '#e7c94d',
         main: {
           blue: '#1836b2',
           yellow: '#e7c94d',

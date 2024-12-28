@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PostCard from '../../elements/postCard/PostCard';
-import postMiddleware from '../../redux/middleware/postMiddleware';
+import PostCard from '../../../elements/postCard/PostCard';
+import postMiddleware from '../../../redux/middleware/postMiddleware';
 import { useDispatch } from 'react-redux';
-import PostInput from '../../components/dashboard/PostInput';
+import PostInput from '../../dashboard/PostInput';
 
-function Dashboard() {
+function MyProfile() {
   const dispatch = useDispatch();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,9 @@ function Dashboard() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await dispatch(postMiddleware.GetAllPosts());
+        const user = JSON.parse(localStorage.getItem('user'));
+        const UserID = user._id;        
+        const response = await dispatch(postMiddleware.GetPostsByUserID(UserID));        
         if (response.success) {
           setPosts(response.data);
         } else {
@@ -27,29 +29,26 @@ function Dashboard() {
 
     fetchPosts();
   }, [dispatch]);
-  
+
   return (
-    <div className='rounded-lg border bg-blue-50 dark:bg-yellow-100'>
-    <div className="flex m-1 mb-3">
-      <PostInput/>
-      </div>
-    <div className="flex flex-col gap-6 h-[calc(100vh-180px)] overflow-auto">
+    <div className="flex flex-col gap-6">
       {loading ? (
         <p className="text-gray-500">Loading posts...</p>
       ) : (
-        <div className="space-y-4 mx-4">
+        <div className="space-y-4 mt-4">
+          <h1 className="font-bold text-xl text-gray-900 dark:text-white">All Posts</h1>
           {posts.length === 0 ? (
             <p className="text-gray-500">No posts available.</p>
           ) : (
             posts.map((post) => (
               <PostCard
                 key={post._id}
-                userName={post.user.name || "User"}
+                userName={post.user.name}
                 userPhoto={post.user.profilephoto}
                 postPhoto={post.postphoto}
-                postText={post.posttext || ''}
-                initialLikeCount={post.likecount|| 0}
-                liked={post.liked || false}
+                postText={post.posttext}
+                initialLikeCount={post.likecount}
+                liked={post.liked}
                 postdt={String(post.updatedAt)}
                 startupName={post.startupName}
                 startupID={post.startupID}
@@ -59,8 +58,7 @@ function Dashboard() {
         </div>
       )}
     </div>
-    </div>
   );
 }
 
-export default Dashboard;
+export default MyProfile;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDarkMode } from '../../context/DarkModeContext.jsx';
-import ButtonWithIcon from '../../elements/buttonWithIcon/ButtonWithIcon.jsx';
+import { useDarkMode } from '../../../context/DarkModeContext.jsx';
+import ButtonWithIcon from '../../../elements/buttonWithIcon/ButtonWithIcon.jsx';
 import { useDispatch } from 'react-redux';
-import postsMiddleware from "../../redux/middleware/postMiddleware.js";
-import CrossButton from '../../elements/crossButton/CrossButton.jsx';
-import startupMiddleware from "../../redux/middleware/startupMiddleware.js"
+import postsMiddleware from "../../../redux/middleware/postMiddleware.js";
+import CrossButton from '../../../elements/crossButton/CrossButton.jsx';
+import startupMiddleware from "../../../redux/middleware/startupMiddleware.js"
 
 const AddPost = () => {
   const navigate = useNavigate();
