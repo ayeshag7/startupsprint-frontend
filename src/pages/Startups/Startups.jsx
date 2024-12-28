@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import StartupCard from '../../components/Startup/StartupCard';
 import startupMiddleware from '../../redux/middleware/startupMiddleware'
+import SearchBar from "../../elements/searchBar/SearchBar";
+import SortDropdown from "../../elements/sortDropdown/SortDropdown";
 
 function Startups() {
   const dispatch = useDispatch();
@@ -35,6 +37,14 @@ function Startups() {
   
   
   return (
+    <div className="">
+    <div className="flex items-center space-x-4">
+      <SearchBar/>
+      <SortDropdown/>
+      
+        {/* {searchBarData && <SearchBar Data={searchBarData} setData={searchBarSetData} searchKey={searchBarKey} className={searchBarclassName} />} */}
+        {/* {sortDropdownData && <SortDropdown Data={sortDropdownData} setData={sortDropdownSetData} options={sortDropdownOptions} />} */}
+    </div>
     <div className="flex flex-col gap-6 h-[calc(100vh-100px)] overflow-auto rounded-lg border bg-blue-50">
       {loading ? (
         <p className="text-gray-500">Loading startups...</p>
@@ -60,6 +70,7 @@ function Startups() {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 }
