@@ -79,7 +79,7 @@ function Chat({ children, onLogout, isDarkMode, toggleDarkMode }) {
           </>
         ) : (
           <div className={`flex flex-col justify-center items-center h-[calc(100vh-115px)] rounded-r-lg dark:bg-gray-800 dark:text-white bg-white text-black`}>
-            <img src={logo} alt="Main Logo" className={`h-24 w-24 mb-6 dark:filter invert`} />
+            <img src={logo} alt="Main Logo" className={`h-24 w-24 mb-6 dark:"filter invert"`} />
             <h1 className="text-4xl font-bold dark:text-white text-gray-800 mb-4 drop-shadow-lg">
               Startup Sprint
             </h1>
