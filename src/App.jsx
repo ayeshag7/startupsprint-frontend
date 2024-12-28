@@ -47,7 +47,7 @@ function App() {
 
         <Route path="/requests" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><Requests isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
 
-        <Route path="/myposts" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
+        <Route path="/myprofile" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyProfile isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
         <Route path="/addpost" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><AddPost isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
 
         <Route path="/myinvestments" element={<PrivateRoute isLoggedIn={isAuthenticated}><Layout><MyInvestments isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/></Layout></PrivateRoute>}/>
