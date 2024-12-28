@@ -17,7 +17,7 @@ function MyStartups() {
       try {
         const user = JSON.parse(localStorage.getItem('user'));
         const UserID = user._id;        
-        const response = await dispatch(startupMiddleware.GetStartupsByUserID(UserID));        
+        const response = await dispatch(startupMiddleware.GetStartupsByUserID(UserID));
         if (response.success) {
           setStartups(response.data);
         } else {

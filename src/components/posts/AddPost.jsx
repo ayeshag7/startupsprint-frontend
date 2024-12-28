@@ -23,7 +23,9 @@ const AddPost = () => {
   useEffect(() => {
     const fetchStartups = async () => {
       try {
-        const response = await dispatch(startupMiddleware.GetAllStartups());
+        const user = JSON.parse(localStorage.getItem('user'));
+        const UserID = user._id;        
+        const response = await dispatch(startupMiddleware.GetStartupsByUserID(UserID));
         if (response.success) {
           setStartups(response.data);
         } else {
